@@ -31,16 +31,28 @@ class FavoritosPage extends StatelessWidget {
                   elevation: 5,
                   child: ListTile(
                     contentPadding: EdgeInsets.all(16.0),
-                    leading: Image.asset(favorite['image']!,
-                        width: 50.0, height: 50.0, fit: BoxFit.cover),
+                    leading: Image.asset(
+                      favorite['image']!,
+                      width: 50.0,
+                      height: 50.0,
+                      fit: BoxFit.cover,
+                    ),
                     title: Text(
                       favorite['name']!,
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     trailing: Icon(Icons.chevron_right),
                     onTap: () {
-                      // Adicione ações ao tocar no item, se necessário
+                      // Exibe um snackbar ao tocar no item
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Você selecionou: ${favorite['name']}',
+                          ),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
                     },
                   ),
                 );
